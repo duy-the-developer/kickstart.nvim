@@ -1,6 +1,10 @@
-require("lua.custom.lazy")
-require("lua.custom.options")
-require("lua.custom.keymaps")
+if vim.loader then
+  vim.loader.enable()
+end 
+
+require("custom.lazy")
+require("custom.options")
+require("custom.keymaps")
 
 pcall(require('telescope').load_extension, 'fzf')
 

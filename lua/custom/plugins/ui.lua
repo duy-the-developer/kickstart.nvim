@@ -1,9 +1,9 @@
 return {
-	-- folke/which-key.nvim
-	{ "folke/which-key.nvim", opts = {} },
+  -- folke/which-key.nvim
+  { "folke/which-key.nvim", opts = {} },
 
-	-- lewis6991/gitsigns.nvim
-	{
+  -- lewis6991/gitsigns.nvim
+  {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     "lewis6991/gitsigns.nvim",
     opts = {
@@ -42,8 +42,8 @@ return {
     },
   },
 
-	-- nvim-lualine/lualine.nvim
-	{
+  -- nvim-lualine/lualine.nvim
+  {
     "nvim-lualine/lualine.nvim",
     -- See `:help lualine.txt`
     opts = {
@@ -56,8 +56,8 @@ return {
     },
   },
 
-	-- 'lukas-reineke/indent-blankline.nvim'
-	{
+  -- 'lukas-reineke/indent-blankline.nvim'
+  {
     -- Add indentation guides even on blank lines
     "lukas-reineke/indent-blankline.nvim",
     -- Enable `lukas-reineke/indent-blankline.nvim`
