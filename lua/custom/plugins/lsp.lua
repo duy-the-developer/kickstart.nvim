@@ -67,34 +67,34 @@ return {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
-    -- Automatically install LSPs to stdpath for neovim
-    { 'williamboman/mason.nvim' },
-    { 'williamboman/mason-lspconfig.nvim' },
+      -- Automatically install LSPs to stdpath for neovim
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
 
-    -- Useful status updates for LSP
-    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-    { 'j-hui/fidget.nvim', opts = {} },
+      -- Useful status updates for LSP
+      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+      { 'j-hui/fidget.nvim', opts = {} },
 
-    -- Additional lua configuration, makes nvim stuff amazing!
-    { 'folke/neodev.nvim', opts = {} },
+      -- Additional lua configuration, makes nvim stuff amazing!
+      { 'folke/neodev.nvim', opts = {} },
     },
-		config = function()
-			require('mason').setup()
-			require('mason-lspconfig').setup()
-			local mason_lspconfig = require 'mason-lspconfig'
-			mason_lspconfig.setup {
-				ensure_installed = vim.tbl_keys(servers),
-			}
-			mason_lspconfig.setup_handlers {
-				function(server_name) 
-					require('lspconfig')[server_name].setup{
-						capabilities = capabilities,
-						on_attach = on_attach,
-						settings = servers[server_name],
-						filetypes = (servers[server_name] or {}).filetypes,
-					}
-				end
-			}
-		end
+    config = function()
+      require('mason').setup()
+      require('mason-lspconfig').setup()
+      local mason_lspconfig = require 'mason-lspconfig'
+      mason_lspconfig.setup {
+	ensure_installed = vim.tbl_keys(servers),
+      }
+      mason_lspconfig.setup_handlers {
+	function(server_name)
+	  require('lspconfig')[server_name].setup{
+	    capabilities = capabilities,
+	    on_attach = on_attach,
+	    settings = servers[server_name],
+	    filetypes = (servers[server_name] or {}).filetypes,
+	  }
+	end
+      }
+    end
   },
 }

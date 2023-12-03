@@ -1,18 +1,17 @@
 return {
-	--
-	-- Git related plugins
-	{ 'tpope/vim-fugitive' },
-	{ 'tpope/vim-rhubarb' },
-	--
-	-- Detect tabstop and shiftwidth automatically
-	-- { 'tpope/vim-sleuth' },
-	--
-	-- 'nvim-telescope/telescope.nvim'
-	{
-		"nvim-telescope/telescope.nvim",
-		branch = "0.1.x",
-		dependencies = {
-			'nvim-lua/plenary.nvim',
+  -- Git related plugins
+  { 'tpope/vim-fugitive' },
+  { 'tpope/vim-rhubarb' },
+
+  -- Detect tabstop and shiftwidth automatically
+  { 'tpope/vim-sleuth' },
+
+  -- 'nvim-telescope/telescope.nvim'
+  {
+    "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
+    dependencies = {
+      'nvim-lua/plenary.nvim',
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
       -- Only load if `make` is available. Make sure you have the system
       -- requirements installed.
@@ -25,6 +24,6 @@ return {
           return vim.fn.executable 'make' == 1
         end,
       },
-		}
-	}
+    }
+  }
 }
