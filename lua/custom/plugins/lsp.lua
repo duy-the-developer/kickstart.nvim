@@ -41,6 +41,24 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+local servers = {
+  -- clangd = {},
+  -- gopls = {},
+  -- pyright = {},
+  -- rust_analyzer = {},
+  -- tsserver = {},
+  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+
+  lua_ls = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+      -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+      -- diagnostics = { disable = { 'missing-fields' } },
+    },
+  },
+}
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
@@ -51,36 +69,7 @@ return {
     dependencies = {
     -- Automatically install LSPs to stdpath for neovim
     { 'williamboman/mason.nvim' },
-    { 'williamboman/mason-lspconfig.nvim', 
-      opt = {
-        ensure_installed = {
-          lua_ls = {
-            Lua = {
-              workspace = { checkThirdParty = false },
-              telemetry = { enable = false }
-            }
-          },
-          "stylua",
-          "selene",
-          "luacheck",
-          "shellcheck",
-          "shfmt",
-          "tailwindcss-language-server",
-          "typescript-language-server",
-          "css-lsp",
-        },
-        setup_handlers =
-          function(server_name) 
-            require('lspconfig')[server_name].setup{
-              capabilities = capabilities,
-              on_attach = on_attach,
-              settings = servers[server_name],
-              filetypes = (servers[server_name] or {}).filetypes,
-            }
-          end
-        
-      } 
-    },
+    { 'williamboman/mason-lspconfig.nvim' },
 
     -- Useful status updates for LSP
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -89,5 +78,23 @@ return {
     -- Additional lua configuration, makes nvim stuff amazing!
     { 'folke/neodev.nvim', opts = {} },
     },
+		config = function()
+			require('mason').setup()
+			require('mason-lspconfig').setup()
+			local mason_lspconfig = require 'mason-lspconfig'
+			mason_lspconfig.setup {
+				ensure_installed = vim.tbl_keys(servers),
+			}
+			mason_lspconfig.setup_handlers {
+				function(server_name) 
+					require('lspconfig')[server_name].setup{
+						capabilities = capabilities,
+						on_attach = on_attach,
+						settings = servers[server_name],
+						filetypes = (servers[server_name] or {}).filetypes,
+					}
+				end
+			}
+		end
   },
 }

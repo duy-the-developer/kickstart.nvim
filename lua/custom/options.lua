@@ -1,5 +1,3 @@
-print("hello from options.lua")
-
 -- [[ Options from kickstart.nvim ]]
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -11,8 +9,8 @@ vim.wo.number = true
 vim.o.mouse = 'a'
 
 -- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
+-- Remove this option if you want your OS clipboard to remain independent.
+-- See `:help 'clipboard'`
 vim.o.clipboard = 'unnamedplus'
 
 -- Enable break indent
@@ -42,7 +40,7 @@ vim.o.termguicolors = true
 -- Re-Enable highlight search
 vim.o.hlsearch = false
 
--- Use relative line number
+-- Use relative line number, this helps enhance buffer navigation with vim motion
 vim.o.relativenumber = true
 
 -- Indentation
@@ -74,3 +72,6 @@ vim.o.splitkeep = "screen"
 -- Scrolling margin
 vim.o.scrolloff = 12
 vim.o.sidescrolloff = 12
+
+-- Highlight current line
+vim.o.cursorline = true

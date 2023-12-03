@@ -1,4 +1,3 @@
-print("hello from keymaps.lua")
 -- [[ Keymaps from kickstart.nvim ]]
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -134,7 +133,7 @@ keymap.set(n, "<S-l>", ":bprev<Return>")
 keymap.set(n, "<leader>c", ":bd<Return>")
 
 -- Override diagnostic keymaps
-vim.keymap.set('n', ';d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ';D', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>k', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>K', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+keymap.set(n, ';d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+keymap.set(n, ';D', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+keymap.set(n, '<leader>k', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+keymap.set(n, '<leader>K', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
