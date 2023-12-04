@@ -95,6 +95,9 @@ return {
             dismiss = '<C-esc>',
           },
         },
+        filetypes = {
+          markdown = true,
+        },
       }
     end,
   },
