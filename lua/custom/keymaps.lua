@@ -34,17 +34,17 @@ local function find_git_root()
   local current_dir
   local cwd = vim.fn.getcwd()
   -- If the buffer is not associated with a file, return nil
-  if current_file == "" then
+  if current_file == '' then
     current_dir = cwd
   else
     -- Extract the directory from the current file's path
-    current_dir = vim.fn.fnamemodify(current_file, ":h")
+    current_dir = vim.fn.fnamemodify(current_file, ':h')
   end
 
   -- Find the Git root directory from the current file's path
-  local git_root = vim.fn.systemlist("git -C " .. vim.fn.escape(current_dir, " ") .. " rev-parse --show-toplevel")[1]
+  local git_root = vim.fn.systemlist('git -C ' .. vim.fn.escape(current_dir, ' ') .. ' rev-parse --show-toplevel')[1]
   if vim.v.shell_error ~= 0 then
-    print("Not a git repository. Searching on current working directory")
+    print 'Not a git repository. Searching on current working directory'
     return cwd
   end
   return git_root
@@ -54,9 +54,9 @@ end
 local function live_grep_git_root()
   local git_root = find_git_root()
   if git_root then
-    require('telescope.builtin').live_grep({
-      search_dirs = {git_root},
-    })
+    require('telescope.builtin').live_grep {
+      search_dirs = { git_root },
+    }
   end
 end
 
@@ -82,55 +82,55 @@ vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by 
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
--- [[ Personal keymaps ]] 
+-- [[ Personal keymaps ]]
 -- Variable for common options
-local n = "n"
+local n = 'n'
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
 -- Basic QOL keymaps
-keymap.set(n, "<leader>w", ":w<Return>")
-keymap.set(n, "<leader>q", ":q<Return>")
+keymap.set(n, '<leader>w', ':w<Return>')
+keymap.set(n, '<leader>q', ':q<Return>')
 
--- Increment/ decrement 
-keymap.set(n , "+", "<C-a>")
-keymap.set(n , "-", "<C-x>")
+-- Increment/ decrement
+keymap.set(n, '-', '<C-a>')
+keymap.set(n, '+', '<C-x>')
 
 -- Delete a word backwards
-keymap.set(n, "dbw", 'vb"_d')
+keymap.set(n, 'dbw', 'vb"_d')
 
 -- Select all
-keymap.set(n, "<C-a>", "gg<S-v>G")
+keymap.set(n, '<C-a>', 'gg<S-v>G')
 
--- Disable inherit comment on new line 
-keymap.set(n, "<Leader>o", "o<Esc>^Da", opts)
-keymap.set(n, "<Leader>O", "O<Esc>^Da", opts)
+-- Disable inherit comment on new line
+keymap.set(n, '<Leader>o', 'o<Esc>^Da', opts)
+keymap.set(n, '<Leader>O', 'O<Esc>^Da', opts)
 
 -- Tab navigation
-keymap.set(n, "te", ":tabedit")
-keymap.set(n, "<tab>", ":tabnext<Return>", opts)
-keymap.set(n, "<S-tab>", ":tabprev<Return>", opts)
+keymap.set(n, 'te', ':tabedit')
+keymap.set(n, '<tab>', ':tabnext<Return>', opts)
+keymap.set(n, '<S-tab>', ':tabprev<Return>', opts)
 
--- Split window 
-keymap.set(n, "ss", ":split<Return>", opts)
-keymap.set(n, "sv", ":vsplit<Return>", opts)
+-- Split window
+keymap.set(n, 'ss', ':split<Return>', opts)
+keymap.set(n, 'sv', ':vsplit<Return>', opts)
 
 -- Window navigation
-keymap.set(n, "<C-h>", "<C-w>h")
-keymap.set(n, "<C-j>", "<C-w>j")
-keymap.set(n, "<C-k>", "<C-w>k")
-keymap.set(n, "<C-l>", "<C-w>l")
+keymap.set(n, '<C-h>', '<C-w>h')
+keymap.set(n, '<C-j>', '<C-w>j')
+keymap.set(n, '<C-k>', '<C-w>k')
+keymap.set(n, '<C-l>', '<C-w>l')
 
 -- Window resizing
-keymap.set(n, "<C-left>", "<C-w><")
-keymap.set(n, "<C-right>", "<C-w>>")
-keymap.set(n, "<C-up>", "<C-w>+")
-keymap.set(n, "<C-down>", "<C-w>-")
+keymap.set(n, '<C-left>', '<C-w><')
+keymap.set(n, '<C-right>', '<C-w>>')
+keymap.set(n, '<C-up>', '<C-w>+')
+keymap.set(n, '<C-down>', '<C-w>-')
 
 -- Buffer navigation
-keymap.set(n, "<S-h>", ":bprev<Return>")
-keymap.set(n, "<S-l>", ":bprev<Return>")
-keymap.set(n, "<leader>c", ":bd<Return>")
+keymap.set(n, '<S-h>', ':bprev<Return>')
+keymap.set(n, '<S-l>', ':bprev<Return>')
+keymap.set(n, '<leader>c', ':bd<Return>')
 
 -- Override diagnostic keymaps
 keymap.set(n, ';d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
