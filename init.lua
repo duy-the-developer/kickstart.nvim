@@ -1,6 +1,6 @@
 if vim.loader then
   vim.loader.enable()
-end 
+end
 
 require("custom.lazy")
 require("custom.options")

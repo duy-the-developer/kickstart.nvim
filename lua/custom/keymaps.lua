@@ -116,10 +116,10 @@ keymap.set(n, "ss", ":split<Return>", opts)
 keymap.set(n, "sv", ":vsplit<Return>", opts)
 
 -- Window navigation
-keymap.set(n, "sh", "<C-w>h")
-keymap.set(n, "sj", "<C-w>j")
-keymap.set(n, "sk", "<C-w>k")
-keymap.set(n, "sl", "<C-w>l")
+keymap.set(n, "<C-h>", "<C-w>h")
+keymap.set(n, "<C-j>", "<C-w>j")
+keymap.set(n, "<C-k>", "<C-w>k")
+keymap.set(n, "<C-l>", "<C-w>l")
 
 -- Window resizing
 keymap.set(n, "<C-left>", "<C-w><")
