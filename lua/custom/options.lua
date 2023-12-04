@@ -59,7 +59,7 @@ vim.o.wrap = false
 -- Display filename
 vim.o.title = true
 
--- Disable mouse 
+-- Disable mouse
 vim.o.mouse = ''
 
 -- Split new windows below or right of current
@@ -67,7 +67,7 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 
 -- Keep text on the same screen line after splitting
-vim.o.splitkeep = "screen"
+vim.o.splitkeep = 'screen'
 
 -- Scrolling margin
 vim.o.scrolloff = 12
