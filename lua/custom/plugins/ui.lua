@@ -1,7 +1,7 @@
 return {
   -- folke/which-key.nvim
   { "folke/which-key.nvim", opts = {} },
-  
+
 	-- Test for gutter git sign
   -- lewis6991/gitsigns.nvim
   {
@@ -50,13 +50,13 @@ return {
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'auto',
         component_separators = '|',
         section_separators = '',
       },
     },
   },
-  
+
   -- 'lukas-reineke/indent-blankline.nvim'
   {
     -- Add indentation guides even on blank lines

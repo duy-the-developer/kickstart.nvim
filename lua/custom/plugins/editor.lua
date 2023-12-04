@@ -28,6 +28,112 @@ return {
 		}
 	},
 	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
+		},
+	config = function ()
+		-- If you want icons for diagnostic errors, you'll need to define them somewhere:
+		vim.fn.sign_define("DiagnosticSignError",
+			{text = " ", texthl = "DiagnosticSignError"})
+		vim.fn.sign_define("DiagnosticSignWarn",
+			{text = " ", texthl = "DiagnosticSignWarn"})
+		vim.fn.sign_define("DiagnosticSignInfo",
+			{text = " ", texthl = "DiagnosticSignInfo"})
+		vim.fn.sign_define("DiagnosticSignHint",
+			{text = "󰌵", texthl = "DiagnosticSignHint"})
+
+		require("neo-tree").setup({
+			default_component_configs = {
+				indent = {
+					-- indent guides
+					indent_marker = "│",
+					last_indent_marker = "└",
+					highlight = "NeoTreeIndentMarker",
+					-- expander config, needed for nesting files
+					with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
+					expander_collapsed = "",
+					expander_expanded = "",
+					expander_highlight = "NeoTreeExpander",
+				},
+				name = {
+					trailing_slash = true,
+					use_git_status_colors = true,
+					highlight = "NeoTreeFileName",
+				},
+				git_status = {
+					symbols = {
+						-- Change type
+						added     = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
+						modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
+					}
+				},
+				-- If you don't want to use these columns, you can set `enabled = false` for each of them individually
+				file_size = {
+					enabled = true,
+					required_width = 64, -- min width of window required to show this column
+				},
+				type = {
+					enabled = true,
+					required_width = 122, -- min width of window required to show this column
+				},
+				last_modified = {
+					enabled = true,
+					required_width = 88, -- min width of window required to show this column
+				},
+				created = {
+					enabled = true,
+					required_width = 110, -- min width of window required to show this column
+				},
+				symlink_target = {
+					enabled = false,
+				},
+			},
+			-- A list of functions, each representing a global custom command
+			-- that will be available in all sources (if not overridden in `opts[source_name].commands`)
+			-- see `:h neo-tree-custom-commands-global`
+			commands = {},
+			window = {
+				position = "left",
+				width = 40,
+				mapping_options = {
+					noremap = true,
+					nowait = true,
+				},
+				mappings = {
+					["<space>"] = {},
+					["c"] = "close_node",
+					['C'] = 'close_all_subnodes',
+					["z"] = "close_all_nodes",
+					["Z"] = "expand_all_nodes",
+				}
+			},
+			filesystem = {
+				filtered_items = {
+					visible = false, -- when true, they will just be displayed differently than normal items
+					hide_dotfiles = false,
+					hide_gitignored = false,
+					hide_hidden = false, -- only works on Windows for hidden files/directories
+				},
+				follow_current_file = {
+					enabled = true, -- This will find and focus the file in the active buffer every time
+					--               -- the current file is changed while the tree is open.
+				},
+				hijack_netrw_behavior = -- "open_current", -- netrw disabled, opening a directory opens neo-tree
+																								-- in whatever position is specified in window.position
+															"open_current",  -- netrw disabled, opening a directory opens within the
+																								-- window like netrw would, regardless of window.position
+															-- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
+			},
+		})
+
+		vim.keymap.set('n', '<leader>e', ':Neotree toggle<Return>', { silent = true, desc = 'N[e]otree toggle'})
+    end
+	},
+	{
 		'RRethy/vim-illuminate',
 		config = function ()
 			require('illuminate').configure({})
