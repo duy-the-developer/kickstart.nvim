@@ -202,4 +202,17 @@ return {
       { '<leader>gg', '<cmd>LazyGit<CR>', desc = 'Lazy[G]it' },
     },
   },
+  {
+    'iamcco/markdown-preview.nvim',
+    cmd = {
+      'MarkdownPreview',
+      'MarkdownPreviewStop',
+      'MarkdownPreviewToggle',
+    },
+    build = 'cd app && yarn install',
+    init = function()
+      vim.g.makdp_filetypes = { 'markdown' }
+    end,
+    ft = { 'markdown' },
+  },
 }
