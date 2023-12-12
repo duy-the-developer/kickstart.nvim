@@ -63,7 +63,6 @@ end
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
@@ -75,6 +74,7 @@ end, { desc = '[/] Fuzzily search in current buffer' })
 
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>so', require('telescope.builtin').oldfiles, { desc = '[S]earch recently [O]pened files' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
@@ -93,8 +93,8 @@ keymap.set(n, '<leader>w', ':w<Return>')
 keymap.set(n, '<leader>q', ':q<Return>')
 
 -- Increment/ decrement
-keymap.set(n, '+', '<C-a>')
-keymap.set(n, '-', '<C-x>')
+keymap.set(n, '+', '<C-x>')
+keymap.set(n, '-', '<C-a>')
 
 -- Delete a word backwards
 keymap.set(n, 'dbw', 'vb"_d')
@@ -130,7 +130,6 @@ keymap.set(n, '<C-down>', '<C-w>-')
 -- Buffer navigation
 keymap.set(n, '<S-h>', ':bprev<Return>')
 keymap.set(n, '<S-l>', ':bnext<Return>')
-keymap.set(n, '<leader>c', ':bd<Return>')
 
 -- Override diagnostic keymaps
 keymap.set(n, ';d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })

@@ -215,4 +215,8 @@ return {
     end,
     ft = { 'markdown' },
   },
+  {
+    'norcalli/nvim-colorizer.lua',
+    opt = {},
+  },
 }
