@@ -93,8 +93,8 @@ keymap.set(n, '<leader>w', ':w<Return>')
 keymap.set(n, '<leader>q', ':q<Return>')
 
 -- Increment/ decrement
-keymap.set(n, '+', '<C-x>')
-keymap.set(n, '-', '<C-a>')
+keymap.set(n, '+', '<C-a>')
+keymap.set(n, '-', '<C-x>')
 
 -- Delete a word backwards
 keymap.set(n, 'dbw', 'vb"_d')
