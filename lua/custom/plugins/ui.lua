@@ -73,7 +73,7 @@ return {
         lualine_c = {
           {
             'buffers',
-            show_filename_only = false,
+            show_filename_only = true,
             mode = 4,
             disabled_buftypes = { 'quickfix', 'prompt' },
           },
@@ -83,10 +83,10 @@ return {
         },
       },
       winbar = {
-        lualine_b = { 'filename' },
+        lualine_b = { { 'filename', path = 1, shorting_target = 100 } },
       },
       inactive_winbar = {
-        lualine_c = { 'filename' },
+        lualine_c = { { 'filename', path = 1, shorting_target = 100 } },
       },
     },
   },

@@ -74,4 +74,4 @@ vim.o.scrolloff = 12
 vim.o.sidescrolloff = 12
 
 -- Highlight current line
-vim.o.cursorline = true
+-- vim.o.cursorline = true

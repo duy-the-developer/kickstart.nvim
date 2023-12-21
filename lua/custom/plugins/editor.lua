@@ -143,16 +143,16 @@ return {
     'RRethy/vim-illuminate',
     config = function()
       require('illuminate').configure {}
-      vim.api.nvim_set_hl(0, 'IlluminatedWordText', { link = 'Visual' })
-      vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { link = 'Visual' })
-      vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { link = 'Visual' })
+      vim.api.nvim_set_hl(0, 'IlluminatedWordText', { underline = true })
+      vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { underline = true })
+      vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { underline = true })
       --- auto update the highlight style on colorscheme change
       vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
         pattern = { '*' },
         callback = function(_)
-          vim.api.nvim_set_hl(0, 'IlluminatedWordText', { link = 'Visual' })
-          vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { link = 'Visual' })
-          vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { link = 'Visual' })
+          vim.api.nvim_set_hl(0, 'IlluminatedWordText', { underline = true })
+          vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { underline = true })
+          vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { underline = true })
         end,
       })
     end,
