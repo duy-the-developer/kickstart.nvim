@@ -5,6 +5,9 @@ vim.o.hlsearch = false
 -- Make line numbers default
 vim.wo.number = true
 
+-- Conceal level
+vim.o.conceallevel = 1
+
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
