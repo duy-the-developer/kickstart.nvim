@@ -6,7 +6,7 @@ return {
     'folke/tokyonight.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'jellybeans-nvim'
+      vim.cmd.colorscheme 'tokyonight-night'
     end,
   },
 }

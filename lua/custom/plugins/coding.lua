@@ -79,38 +79,38 @@ return {
 		end,
 	},
 
-	-- Github Copilot
-	{
-		'zbirenbaum/copilot.lua',
-		config = function()
-			require('copilot').setup {
-				panel = {
-					enabled = true,
-					auto_refresh = true,
-					layout = {
-						position = 'right',
-						ratio = 0.4,
-					},
-					keymap = {
-						open = '<C-i>',
-						refresh = '<C-r>',
-					},
-				},
-				suggestion = {
-					enabled = true,
-					auto_trigger = true,
-					debounce = 75,
-					keymap = {
-						accept = '<C-l>',
-						next = '<C-j>',
-						prev = '<C-k>',
-						dismiss = '<C-esc>',
-					},
-				},
-				-- filetypes = {
-				--   markdown = true,
-				-- },
-			}
-		end,
-	},
+  -- Github Copilot
+  {
+    'zbirenbaum/copilot.lua',
+    config = function()
+      require('copilot').setup {
+        panel = {
+          enabled = true,
+          auto_refresh = true,
+          layout = {
+            position = 'right',
+            ratio = 0.4,
+          },
+          keymap = {
+            open = '<C-i>',
+            refresh = '<C-r>',
+          },
+        },
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = '<C-l>',
+            next = '<C-j>',
+            prev = '<C-k>',
+            dismiss = '<C-esc>',
+          },
+        },
+        -- filetypes = {
+        --   markdown = true,
+        -- },
+      }
+    end,
+  },
 }

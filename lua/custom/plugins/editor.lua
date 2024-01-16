@@ -1,56 +1,55 @@
 return {
-	--
-	-- Git related plugins
-	{ 'tpope/vim-fugitive' },
-	{ 'tpope/vim-rhubarb' },
-	--
-	-- Detect tabstop and shiftwidth automatically
-	-- { 'tpope/vim-sleuth' },
-	--
-	-- 'nvim-telescope/telescope.nvim'
-	{
-		'nvim-telescope/telescope.nvim',
-		branch = '0.1.x',
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-			-- Fuzzy Finder Algorithm which requires local dependencies to be built.
-			-- Only load if `make` is available. Make sure you have the system
-			-- requirements installed.
-			{
-				'nvim-telescope/telescope-fzf-native.nvim',
-				-- NOTE: If you are having trouble with this installation,
-				--       refer to the README for telescope-fzf-native for more instructions.
-				build = 'make',
-				cond = function()
-					return vim.fn.executable 'make' == 1
-				end,
-			},
-		},
-		config = function()
-			require('telescope').setup {
-				defaults = {
-					sorting_strategy = 'ascending',
-					layout_config = {
-						prompt_position = 'top',
-					},
-				},
-			}
-		end,
-	},
-	{
-		'nvim-neo-tree/neo-tree.nvim',
-		branch = 'v3.x',
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-			'nvim-tree/nvim-web-devicons',
-			'MunifTanjim/nui.nvim',
-		},
-		config = function()
-			-- If you want icons for diagnostic errors, you'll need to define them somewhere:
-			vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
-			vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
-			vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
-			vim.fn.sign_define('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint' })
+  -- Git related plugins
+  { 'tpope/vim-fugitive' },
+  { 'tpope/vim-rhubarb' },
+  --
+  -- Detect tabstop and shiftwidth automatically
+  -- { 'tpope/vim-sleuth' },
+  --
+  -- 'nvim-telescope/telescope.nvim'
+  {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      -- Fuzzy Finder Algorithm which requires local dependencies to be built.
+      -- Only load if `make` is available. Make sure you have the system
+      -- requirements installed.
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        -- NOTE: If you are having trouble with this installation,
+        --       refer to the README for telescope-fzf-native for more instructions.
+        build = 'make',
+        cond = function()
+          return vim.fn.executable 'make' == 1
+        end,
+      },
+    },
+    config = function()
+      require('telescope').setup {
+        defaults = {
+          sorting_strategy = 'ascending',
+          layout_config = {
+            prompt_position = 'top',
+          },
+        },
+      }
+    end,
+  },
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
+    },
+    config = function()
+      -- If you want icons for diagnostic errors, you'll need to define them somewhere:
+      vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
+      vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
+      vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
+      vim.fn.sign_define('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint' })
 
 			require('neo-tree').setup {
 				default_component_configs = {
@@ -184,67 +183,73 @@ return {
 			},
 			-- stylua: ignore
 			{ "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
-		},
-	},
-	{
-		'kdheepak/lazygit.nvim',
-		-- optional for floating window border decoration
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-		},
-		opt = {
-			lazygit_floating_window_winblend = 0,
-			lazygit_floating_window_scaling_factor = 0.9,
-			lazygit_floating_window_border_chars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-			lazygit_floating_window_use_plenary = 1,
-		},
-		keys = {
-			{ '<leader>gg', '<cmd>LazyGit<CR>', desc = 'Lazy[G]it' },
-		},
-	},
-	{
-		'iamcco/markdown-preview.nvim',
-		cmd = {
-			'MarkdownPreview',
-			'MarkdownPreviewStop',
-			'MarkdownPreviewToggle',
-		},
-		build = 'cd app && yarn install',
-		init = function()
-			vim.g.makdp_filetypes = { 'markdown' }
-		end,
-		ft = { 'markdown' },
-	},
-	{
-		'norcalli/nvim-colorizer.lua',
-		opt = {},
-	},
-	{
-		"epwalsh/obsidian.nvim",
-		version = "*", -- recommended, use latest release instead of latest commit
-		lazy = true,
-		ft = "markdown",
-		-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-		-- event = {
-		--   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-		--   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
-		--   "BufReadPre path/to/my-vault/**.md",
-		--   "BufNewFile path/to/my-vault/**.md",
-		-- },
-		dependencies = {
-			-- Required.
-			"nvim-lua/plenary.nvim",
-
-			-- see below for full list of optional dependencies 👇
-		},
-		opts = {
-			workspaces = {
-				{
-					name = "personal",
-					path = "~/p/notes",
-				},
-			},
-			-- see below for full list of options 👇
-		},
-	}
+    },
+  },
+  {
+    'kdheepak/lazygit.nvim',
+    -- optional for floating window border decoration
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    opt = {
+      lazygit_floating_window_winblend = 0,
+      lazygit_floating_window_scaling_factor = 0.9,
+      lazygit_floating_window_border_chars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+      lazygit_floating_window_use_plenary = 1,
+    },
+    keys = {
+      { '<leader>gg', '<cmd>LazyGit<CR>', desc = 'Lazy[G]it' },
+    },
+  },
+  {
+    'iamcco/markdown-preview.nvim',
+    cmd = {
+      'MarkdownPreview',
+      'MarkdownPreviewStop',
+      'MarkdownPreviewToggle',
+    },
+    build = 'cd app && yarn install',
+    init = function()
+      vim.g.makdp_filetypes = { 'markdown' }
+    end,
+    ft = { 'markdown' },
+  },
+  {
+    'norcalli/nvim-colorizer.lua',
+    opt = {},
+  },
+  {
+    'epwalsh/obsidian.nvim',
+    version = '*',
+    lazy = true,
+    ft = 'markdown',
+    dependencies = {
+      -- Required.
+      'nvim-lua/plenary.nvim',
+    },
+    opts = {
+      workspaces = {
+        {
+          name = 'personal',
+          path = '~/p/notes',
+        },
+      },
+      note_id_func = function(title)
+        -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
+        -- In this case a note with the title 'My new note' will be given an ID that looks
+        -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
+        local suffix = ''
+        if title ~= nil then
+          -- If title is given, transform it into valid file name.
+          suffix = title:gsub(' ', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
+        else
+          -- If title is nil, just add 4 random uppercase letters to the suffix.
+          for _ = 1, 4 do
+            suffix = suffix .. string.char(math.random(65, 90))
+          end
+        end
+        return tostring(os.time()) .. '-' .. suffix
+      end,
+    },
+  },
 }
