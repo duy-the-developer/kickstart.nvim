@@ -41,7 +41,7 @@ vim.o.termguicolors = true
 
 -- [[ Personal options ]]
 -- Re-Enable highlight search
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 
 -- Use relative line number, this helps enhance buffer navigation with vim motion
 vim.o.relativenumber = true
@@ -55,12 +55,16 @@ vim.o.smarttab = true
 -- Soy dev indents
 vim.o.shiftwidth = 2
 vim.o.tabstop = 2
+vim.o.expandtab = true
 
 -- No wrap lines
 vim.o.wrap = false
 
 -- Display filename
 vim.o.title = true
+
+-- Color column 80
+vim.o.colorcolumn = "80"
 
 -- Disable mouse
 vim.o.mouse = ''

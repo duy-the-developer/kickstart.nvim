@@ -65,7 +65,7 @@ return {
 						expander_highlight = 'NeoTreeExpander',
 					},
 					name = {
-						trailing_slash = true,
+						trailing_slash = false,
 						use_git_status_colors = true,
 						highlight = 'NeoTreeFileName',
 					},
@@ -102,7 +102,7 @@ return {
 				-- see `:h neo-tree-custom-commands-global`
 				commands = {},
 				window = {
-					position = 'float',
+					position = 'left',
 					width = 40,
 					mapping_options = {
 						noremap = true,
