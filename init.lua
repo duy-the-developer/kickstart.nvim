@@ -2,6 +2,16 @@ if vim.loader then
   vim.loader.enable()
 end
 
+vim.filetype.add({
+  extension = {
+    cls = 'apex',
+    apex = 'apex',
+    trigger = 'apex',
+    soql = 'soql',
+    sosl = 'sosl',
+  }
+})
+
 require("custom.lazy")
 require("custom.options")
 require("custom.keymaps")

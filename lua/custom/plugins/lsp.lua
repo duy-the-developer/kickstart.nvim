@@ -1,4 +1,11 @@
 local on_attach = function(_, bufnr)
+  -- local toggleInlay = function()
+  --   if _.server_capabilities.inlayHintProvider then
+  --     local current_value = vim.lsp.inlay_hint.get({ bufnr = 0 })[1]
+  --     vim.lsp.inlay_hint.enable(bufnr, not current_value)
+  --   end
+  -- end
+
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -15,7 +22,7 @@ local on_attach = function(_, bufnr)
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-
+  -- nmap('<leader>ti', toggleInlay, 'toggle inlay hint')
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
@@ -60,6 +67,9 @@ local servers = {
       diagnostics = { disable = { 'missing-fields' } },
     },
   },
+  apex_ls = {
+    filetypes = { 'apex', 'visualforce', 'lightning', 'cls', 'st' },
+  },
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -76,18 +86,26 @@ return {
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      {
+        'j-hui/fidget.nvim',
+        opts = {}
+      },
 
       -- Additional lua configuration, makes nvim stuff amazing!
-      { 'folke/neodev.nvim', opts = {} },
+      {
+        'folke/neodev.nvim',
+        opts = {}
+      },
     },
     config = function()
       require('mason').setup()
       require('mason-lspconfig').setup()
       local mason_lspconfig = require 'mason-lspconfig'
+
       mason_lspconfig.setup {
         ensure_installed = vim.tbl_keys(servers),
       }
+
       mason_lspconfig.setup_handlers {
         function(server_name)
           require('lspconfig')[server_name].setup {
@@ -97,6 +115,18 @@ return {
             filetypes = (servers[server_name] or {}).filetypes,
           }
         end,
+      }
+
+      -- `mason_lspconfig.setup_handlers` doesn't handle apex_ls automaticlally (why not?), we need to manually attach below actions
+      local lspconfig = require 'lspconfig'
+      lspconfig.apex_ls.setup {
+        apex_enable_semantic_errors = false,
+        apex_enable_completion_statistics = false,
+        filetypes = { 'apex' },
+        root_dir = lspconfig.util.root_pattern('sfdx-project.json'),
+
+        on_attach = on_attach,
+        capabilities = capabilities,
       }
     end,
   },

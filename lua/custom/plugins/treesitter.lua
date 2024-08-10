@@ -8,13 +8,17 @@ return {
     build = ':TSUpdate',
 
     config = function()
-      require('nvim-treesitter.configs').setup {
+      require('nvim-treesitter.configs').setup({
         -- Add languages to be installed here that you want installed for treesitter
         ensure_installed = {
+          'apex',
+          'soql',
+          'sosl',
           'bash',
           'c',
           'diff',
           'html',
+          'java',
           'javascript',
           'jsdoc',
           'json',
@@ -40,7 +44,7 @@ return {
         },
 
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-        auto_install = false,
+        auto_install = true,
 
         highlight = { enable = true },
         indent = { enable = true },
@@ -97,7 +101,7 @@ return {
             },
           },
         },
-      }
+      })
     end,
   },
   {

@@ -69,19 +69,6 @@ return {
       sections = {
         lualine_z = { 'datetime' },
       },
-      tabline = {
-        lualine_c = {
-          {
-            'buffers',
-            show_filename_only = true,
-            mode = 4,
-            disabled_buftypes = { 'quickfix', 'prompt' },
-          },
-        },
-        lualine_x = {
-          { 'tabs' },
-        },
-      },
       winbar = {
         lualine_b = { { 'filename', path = 1, shorting_target = 100 } },
       },
